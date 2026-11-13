@@ -1,0 +1,18 @@
+/* 全局背景图图层：固定在所有内容后面，不接收鼠标事件 */
+.la-theme-background {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-color: transparent;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  transition: opacity 0.2s ease;
+}
+
+/* 根节点让出底色，图片直接从最底层透出 */
+html.la-theme-has-bg body,
+html.la-theme-has-bg .wr-app {
+  background: transparent !important;
+}
