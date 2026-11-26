@@ -1,9 +1,12 @@
 import ThemeSettings from './ThemeSettings.vue'
 import { applyTheme, clearTheme, setMode } from './engine'
 import { destroyBackground, initBackground } from './background'
+import { destroyRailReorder, initRailReorder } from './rail'
+import { destroyLayout, initLayout } from './layout'
+import { initTrayMenu } from './tray'
 
 export const name = 'la-theme'
-export const inject = ['theme', 'settings']
+export const inject = ['theme', 'settings', 'tray']
 
 export function apply(ctx) {
   ctx.settings.register({
@@ -18,7 +21,11 @@ export function apply(ctx) {
   ctx.effect(() => {
     applyTheme()
     initBackground().catch(error => console.warn('[la-theme] 背景图初始化失败:', error))
+    initRailReorder()
+    initLayout()
     return () => {
+      destroyLayout()
+      destroyRailReorder()
       destroyBackground()
       clearTheme()
     }
@@ -31,6 +38,9 @@ export function apply(ctx) {
     })
     return () => off?.()
   })
+
+  // 托盘右键菜单：每套配色一个入口。
+  ctx.effect(() => initTrayMenu(ctx))
 }
 
 export default { name, inject, apply }

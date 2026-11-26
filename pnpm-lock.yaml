@@ -7,10 +7,17 @@ settings:
 importers:
 
   .:
+    dependencies:
+      animejs:
+        specifier: 4.5.0
+        version: 4.5.0
     devDependencies:
       '@element-plus/icons-vue':
         specifier: ^2.3.2
         version: 2.3.2(vue@3.5.45(typescript@5.9.3))
+      '@lucky-apps/client-ui':
+        specifier: 3.2.29
+        version: 3.2.29(@element-plus/icons-vue@2.3.2(vue@3.5.45(typescript@5.9.3)))(element-plus@2.14.8(vue@3.5.45(typescript@5.9.3)))(vue@3.5.45(typescript@5.9.3))
       '@types/node':
         specifier: ^24.19.2
         version: 24.19.2
@@ -78,6 +85,13 @@ packages:
 
   '@jridgewell/sourcemap-codec@1.6.0':
     resolution: {integrity: sha512-T7jf+5zgsZHwNJ4lvQ7/aezbyk0nNX+zJVWpmHA7VYsEx7a7qr5Rg5IbtJFqkgze5Y2sruq1RUY8Q837Od7iFw==}
+
+  '@lucky-apps/client-ui@3.2.29':
+    resolution: {integrity: sha512-sFfqpWuwg2mxMlOb7nismpo2S3Z5wWoEa1+YRFi1W+SveBa9t77SF+mIUbu08QxckDqjFRai4M7HF7ZGrE8q+Q==}
+    peerDependencies:
+      '@element-plus/icons-vue': ^2.3.2
+      element-plus: ^2.14.0
+      vue: ^3.5.0
 
   '@napi-rs/wasm-runtime@1.2.6':
     resolution: {integrity: sha512-mRyDmEw9/fCDXCGfL1sbgIw/GUK0PVxRW4YwgPN61F3LQ+fSyoBFarJVzgGyhF6kRzEQZ0FejDqm4WLXSeqQmw==}
@@ -260,6 +274,17 @@ packages:
     engines: {node: '>=22'}
     peerDependencies:
       vue: ^3.5.0
+
+  animejs@4.5.0:
+    resolution: {integrity: sha512-NQimYX+lz8WaXonGS9zVVoviCIAjONeJayxacUditaivYLqyXgGjFKjuyl0aUUhFKm5MriX9ty1TGovNzoJQWA==}
+    peerDependencies:
+      '@types/three': '>=0.150.0'
+      three: '>=0.150.0'
+    peerDependenciesMeta:
+      '@types/three':
+        optional: true
+      three:
+        optional: true
 
   async-validator@4.2.5:
     resolution: {integrity: sha512-7HhHjtERjqlNbZtqNqy2rckN/SpOOlmDliet+lP7k+eKZEjPk3DgyeU9lIXLdeLz0uBbbVp+9Qdow9wJWgwwfg==}
@@ -540,6 +565,12 @@ snapshots:
 
   '@jridgewell/sourcemap-codec@1.6.0': {}
 
+  '@lucky-apps/client-ui@3.2.29(@element-plus/icons-vue@2.3.2(vue@3.5.45(typescript@5.9.3)))(element-plus@2.14.8(vue@3.5.45(typescript@5.9.3)))(vue@3.5.45(typescript@5.9.3))':
+    dependencies:
+      '@element-plus/icons-vue': 2.3.2(vue@3.5.45(typescript@5.9.3))
+      element-plus: 2.14.8(vue@3.5.45(typescript@5.9.3))
+      vue: 3.5.45(typescript@5.9.3)
+
   '@napi-rs/wasm-runtime@1.2.6(@emnapi/core@2.0.0-beta.2)(@emnapi/runtime@2.0.0-beta.2)':
     dependencies:
       '@emnapi/core': 2.0.0-beta.2
@@ -694,6 +725,8 @@ snapshots:
   '@vueuse/shared@15.0.0(vue@3.5.45(typescript@5.9.3))':
     dependencies:
       vue: 3.5.45(typescript@5.9.3)
+
+  animejs@4.5.0: {}
 
   async-validator@4.2.5: {}
 

@@ -1,0 +1,66 @@
+/* 界面布局增强：图标尺寸 / 间距，以及侧边栏面板拖宽。 */
+.rail-items {
+  gap: var(--la-rail-gap, 4px) !important;
+}
+
+.rail-items > .rail-item {
+  width: var(--la-rail-size, 34px) !important;
+  height: var(--la-rail-size, 34px) !important;
+}
+
+.rail-items > .rail-item .el-icon {
+  font-size: calc(var(--la-rail-size, 34px) * 0.53) !important;
+}
+
+.rail-items > .rail-item .rail-custom-icon,
+.rail-items > .rail-item .rail-custom-icon svg {
+  width: calc(var(--la-rail-size, 34px) * 0.53) !important;
+  height: calc(var(--la-rail-size, 34px) * 0.53) !important;
+}
+
+/* 面板右缘的拖宽热区：默认透明，悬停 / 拖动 / 聚焦时才亮起。 */
+.la-panel-resizer {
+  position: fixed;
+  z-index: 45;
+  display: none;
+  width: 10px;
+  transform: translateX(-50%);
+  cursor: col-resize;
+  touch-action: none;
+}
+
+.la-panel-resizer::after {
+  content: '';
+  position: absolute;
+  inset: 10px 4px;
+  border-radius: 999px;
+  background: var(--el-color-primary);
+  opacity: 0;
+  transition: opacity 0.16s ease;
+}
+
+.la-panel-resizer:hover::after,
+.la-panel-resizer:focus-visible::after,
+html.la-layout-resizing .la-panel-resizer::after {
+  opacity: 0.55;
+}
+
+.la-panel-resizer:focus-visible {
+  outline: none;
+}
+
+html.la-layout-resizing,
+html.la-layout-resizing * {
+  cursor: col-resize !important;
+  user-select: none !important;
+}
+
+html:not(.la-layout-resizing) .nav-panel {
+  transition: width 0.2s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html:not(.la-layout-resizing) .nav-panel {
+    transition: none;
+  }
+}

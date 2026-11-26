@@ -1,6 +1,6 @@
 {
   "name": "la-theme",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "description": "Lucky Apps 主题插件：内置多套配色方案，跟随亮色 / 暗色模式",
   "keywords": [
     "cordis",
@@ -25,6 +25,7 @@
   },
   "devDependencies": {
     "@element-plus/icons-vue": "^2.3.2",
+    "@lucky-apps/client-ui": "3.2.29",
     "@types/node": "^24.19.2",
     "@vitejs/plugin-vue": "^6.0.10",
     "element-plus": "^2.14.7",
@@ -40,5 +41,8 @@
       "entry": "./lib/client.js"
     },
     "kind": "feature"
+  },
+  "dependencies": {
+    "animejs": "4.5.0"
   }
 }

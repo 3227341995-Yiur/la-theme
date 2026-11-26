@@ -1,0 +1,39 @@
+/* 侧边栏图标拖拽排序：只作用于宿主 rail 里的功能按钮。 */
+.rail-items > .rail-item.la-rail-sortable {
+  cursor: grab;
+  touch-action: none;
+}
+
+.rail-items > .rail-item.la-rail-sortable:active {
+  cursor: grabbing;
+}
+
+.rail-items > .rail-item.la-rail-dragging {
+  opacity: 0.3;
+}
+
+/* 跟随指针的拾起替身：克隆宿主按钮，保留主题色，只负责好看。 */
+.la-rail-ghost {
+  position: fixed;
+  z-index: 4000;
+  margin: 0;
+  pointer-events: none;
+  transform-origin: center;
+  transition: none !important;
+  border-radius: 8px !important;
+  background: var(--el-bg-color) !important;
+  color: var(--el-color-primary) !important;
+  box-shadow:
+    0 18px 38px -18px rgba(15, 23, 42, 0.55),
+    0 0 0 1px var(--el-color-primary-light-5);
+}
+
+.la-rail-ghost::before {
+  display: none !important;
+}
+
+html.la-rail-sorting,
+html.la-rail-sorting * {
+  cursor: grabbing !important;
+  user-select: none !important;
+}
