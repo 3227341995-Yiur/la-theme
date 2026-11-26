@@ -18,15 +18,21 @@ const TRAY_CSS = `
 .tray-shell .tray-flyout {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 56px;
+  align-content: start;
   gap: 2px;
   padding: 3px;
+  scrollbar-width: thin;
 }
 .tray-shell .tray-flyout .tray-menu-title {
   display: none;
 }
 .tray-shell .tray-flyout [data-tray-item^="${ITEM_PREFIX}"] {
+  height: 56px;
+  box-sizing: border-box;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   gap: 2px;
   padding: 0;
   text-align: center;
@@ -41,10 +47,11 @@ const TRAY_CSS = `
   border-radius: 4px;
 }
 .tray-shell .tray-flyout [data-tray-item^="${ITEM_PREFIX}"] .tray-label {
+  flex: none;
   max-width: 100%;
   overflow: hidden;
   font-size: 10.5px;
-  line-height: 1.2;
+  line-height: 1.15;
   text-align: center;
   text-overflow: ellipsis;
   white-space: nowrap;
