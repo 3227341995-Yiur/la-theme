@@ -59,6 +59,7 @@ export function initTrayMenu(ctx) {
         id: `${ITEM_PREFIX}${theme.id}`,
         label: theme.id === active.id ? `✓ ${theme.name}` : theme.name,
         iconSvg: preview(theme),
+        keepOpen: true,
         onSelect: () => setThemePack(theme.id),
       })),
     })]
