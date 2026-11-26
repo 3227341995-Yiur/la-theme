@@ -13,14 +13,41 @@ const STYLE_ID = 'la-theme:tray'
 const ITEM_PREFIX = 'la-theme:pack:'
 
 const TRAY_CSS = `
-[data-tray-item^="${ITEM_PREFIX}"] .tray-icon {
+/* 二级面板排成 3×3 缩略图网格，标签放图下，和设置中心的主题卡一致； */
+/* 第一层菜单只有这份面板用，顺便去掉重复标题，让 9 套配色正好放得下。 */
+.tray-shell .tray-flyout {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  padding: 3px;
+}
+.tray-shell .tray-flyout .tray-menu-title {
+  display: none;
+}
+.tray-shell .tray-flyout [data-tray-item^="${ITEM_PREFIX}"] {
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 0;
+  text-align: center;
+}
+.tray-shell .tray-flyout [data-tray-item^="${ITEM_PREFIX}"] .tray-icon {
   width: 64px !important;
   height: 40px !important;
 }
-[data-tray-item^="${ITEM_PREFIX}"] svg {
+.tray-shell .tray-flyout [data-tray-item^="${ITEM_PREFIX}"] svg {
   width: 64px !important;
   height: 40px !important;
   border-radius: 4px;
+}
+.tray-shell .tray-flyout [data-tray-item^="${ITEM_PREFIX}"] .tray-label {
+  max-width: 100%;
+  overflow: hidden;
+  font-size: 10.5px;
+  line-height: 1.2;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 `
 
