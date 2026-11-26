@@ -20,7 +20,7 @@ Lucky Apps 的独立主题插件。内置多套配色，跟随宿主的亮色 / 
 
 ## 托盘切换
 
-托盘图标右键菜单里直接列出全部配色，每项都有一张和设置中心同款的主题缩略图（底色 / 侧栏 / 标题 / 面板 / 主色），当前主题带 ✓，点缩略图立即切换；和设置中心共用同一份选择，两边互相同步。
+托盘右键菜单的「主题」悬浮后在左侧展开二级菜单，每套配色一张和设置中心同款的主题缩略图（底色 / 侧栏 / 标题 / 面板 / 主色），当前主题带 ✓，点缩略图立即切换；和设置中心共用同一份选择，两边互相同步。
 
 ## 全局背景图
 
@@ -72,7 +72,7 @@ pnpm build
 - `src/engine.ts`：把选中的主题写成 `html` 上的内联 CSS 变量，`localStorage` 记住选择；
 - `src/background.ts`：背景图图层、IndexedDB 存取与布局 / 不透明度；
 - `src/rail.ts`：侧边栏图标拖拽排序，Pointer Events + CSS `order` + localStorage，不改宿主代码；
-- `src/tray.ts`：托盘右键菜单的配色入口，`ctx.tray.registerItem` 注册主题缩略图与 ✓，`addStyle` 放大图标位，换色后重新注册；
+- `src/tray.ts`：托盘右键「主题」一级项 + 左侧二级缩略图菜单，`ctx.tray.registerItem` 的 `children` 注册，`addStyle` 放大图标位，换色后重新注册；
 - `src/layout.ts`：面板拖宽、图标尺寸 / 间距，CSS 变量与 inline width；
 - `animejs`：主题卡片入场、选中弹跳、拖拽替身与换色光晕；
 - 选「晨雾蓝」且没有背景图时不写任何变量，直接使用宿主默认配色；

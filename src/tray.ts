@@ -1,5 +1,6 @@
 /**
- * 托盘右键菜单：和设置中心一样，每套配色一张缩略图，点缩略图直接切换。
+ * 托盘右键菜单：一级「主题」悬浮后在左侧展开二级菜单，
+ * 每套配色一张和设置中心同款的主题缩略图，点缩略图直接切换。
  *
  * 托盘菜单窗口只吃纯数据，缩略图只能走 iconSvg：画一版 mini 界面，
  * 再用 addStyle 把图标位放大成卡片大小。换色后重新注册，✓ 和缩略图跟着走。
@@ -9,13 +10,14 @@ import { getActiveThemeId, getMode, setThemePack, subscribe } from './engine'
 
 const SECTION = 'la-theme'
 const STYLE_ID = 'la-theme:tray'
+const ITEM_PREFIX = 'la-theme:pack:'
 
 const TRAY_CSS = `
-[data-tray-item^="la-theme:"] .tray-icon {
+[data-tray-item^="${ITEM_PREFIX}"] .tray-icon {
   width: 64px !important;
   height: 40px !important;
 }
-[data-tray-item^="la-theme:"] svg {
+[data-tray-item^="${ITEM_PREFIX}"] svg {
   width: 64px !important;
   height: 40px !important;
   border-radius: 4px;
@@ -45,14 +47,21 @@ export function initTrayMenu(ctx) {
   let disposers: Array<() => void> = []
   const render = () => {
     for (const dispose of disposers) dispose()
-    disposers = THEMES.map((theme, index) => ctx.tray.registerItem({
-      id: `la-theme:${theme.id}`,
-      label: theme.id === getActiveThemeId() ? `✓ ${theme.name}` : theme.name,
-      iconSvg: preview(theme),
+    const active = THEMES.find(theme => theme.id === getActiveThemeId()) || THEMES[0]
+    disposers = [ctx.tray.registerItem({
+      id: 'la-theme:themes',
+      label: '主题',
+      icon: 'Brush',
+      hint: active.name,
       section: SECTION,
-      order: 200 + index,
-      onSelect: () => setThemePack(theme.id),
-    }))
+      order: 200,
+      children: THEMES.map(theme => ({
+        id: `${ITEM_PREFIX}${theme.id}`,
+        label: theme.id === active.id ? `✓ ${theme.name}` : theme.name,
+        iconSvg: preview(theme),
+        onSelect: () => setThemePack(theme.id),
+      })),
+    })]
     // 菜单正开着时换主题，让托盘窗口立刻重取菜单数据。
     ctx.tray.refresh?.()
   }
