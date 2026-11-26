@@ -11,8 +11,9 @@ const SECTION = 'la-theme'
 const STYLE_ID = 'la-theme:tray'
 
 const TRAY_CSS = `
-[data-tray-item^="la-theme:"] {
-  min-height: 50px;
+[data-tray-item^="la-theme:"] .tray-icon {
+  width: 64px !important;
+  height: 40px !important;
 }
 [data-tray-item^="la-theme:"] svg {
   width: 64px !important;
